@@ -146,9 +146,27 @@ export default class PricesPerBoxesList extends Component {
               <h4>PricesPerBox</h4>
               <div>
                 <label>
+                  <strong>Code:</strong>
+                </label>{" "}
+                {currentPricesPerBox.code}
+              </div>
+              <div>
+                <label>
                   <strong>Name:</strong>
                 </label>{" "}
                 {currentPricesPerBox.name}
+              </div>
+              <div>
+                <label>
+                  <strong>Location:</strong>
+                </label>{" "}
+                {currentPricesPerBox.location}
+              </div>
+              <div>
+                <label>
+                  <strong>Price:</strong>
+                </label>{" "}
+                {currentPricesPerBox.price}
               </div>
               <div>
                 <label>

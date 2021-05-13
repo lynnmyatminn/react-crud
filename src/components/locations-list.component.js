@@ -146,6 +146,12 @@ export default class LocationsList extends Component {
               <h4>Location</h4>
               <div>
                 <label>
+                  <strong>Code:</strong>
+                </label>{" "}
+                {currentLocation.code}
+              </div>
+              <div>
+                <label>
                   <strong>Name:</strong>
                 </label>{" "}
                 {currentLocation.name}
