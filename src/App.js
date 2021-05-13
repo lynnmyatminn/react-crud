@@ -39,11 +39,11 @@ class App extends Component {
                 Services
               </Link>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link to={"/addTutorial"} className="nav-link">
                 Add Tutorial
               </Link>
-            </li>
+            </li> */}
             {/* <li className="nav-item">
               <Link to={"/addCustomer"} className="nav-link">
                 Add Customer
