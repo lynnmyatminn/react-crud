@@ -24,7 +24,7 @@ class App extends Component {
     return (
       <div>
         <nav className="navbar navbar-expand navbar-dark bg-dark">
-          <Link to={"/tutorials"} className="navbar-brand">
+          <Link to={"/customers"} className="navbar-brand">
             Daily Delivery
           </Link>
           <div className="navbar-nav mr-auto">
