@@ -15,6 +15,10 @@ import AddLocation from "./components/add-location.component";
 import Location from "./components/location.component";
 import LocationsList from "./components/locations-list.component";
 
+import AddPricesPerBox from "./components/add-pricesperbox.component";
+import PricesPerBox from "./components/pricesperbox.component";
+import PricesPerBoxesList from "./components/pricesperboxes-list.component";
+
 class App extends Component {
   render() {
     return (
@@ -35,7 +39,7 @@ class App extends Component {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to={"/tutorials"} className="nav-link">
+              <Link to={"/services"} className="nav-link">
                 Services
               </Link>
             </li>
@@ -63,6 +67,9 @@ class App extends Component {
             <Route exact path={["/", "/locations"]} component={LocationsList} />
             <Route exact path="/addLocation" component={AddLocation} />
             <Route path="/locations/:id" component={Location} />
+            <Route exact path={["/", "/services"]} component={PricesPerBoxesList} />
+            <Route exact path="/addService" component={AddPricesPerBox} />
+            <Route path="/services/:id" component={PricesPerBox} />
           </Switch>
         </div>
       </div>
