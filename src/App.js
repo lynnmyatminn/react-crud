@@ -7,6 +7,14 @@ import AddTutorial from "./components/add-tutorial.component";
 import Tutorial from "./components/tutorial.component";
 import TutorialsList from "./components/tutorials-list.component";
 
+import AddCustomer from "./components/add-customer.component";
+import Customer from "./components/customer.component";
+import CustomersList from "./components/customers-list.component";
+
+import AddLocation from "./components/add-location.component";
+import Location from "./components/location.component";
+import LocationsList from "./components/locations-list.component";
+
 class App extends Component {
   render() {
     return (
@@ -17,23 +25,44 @@ class App extends Component {
           </Link>
           <div className="navbar-nav mr-auto">
             <li className="nav-item">
-              <Link to={"/tutorials"} className="nav-link">
-                Tutorials
+              <Link to={"/customers"} className="nav-link">
+                Customers
               </Link>
             </li>
             <li className="nav-item">
-              <Link to={"/add"} className="nav-link">
-                Add
+              <Link to={"/locations"} className="nav-link">
+                Locations
               </Link>
             </li>
+            <li className="nav-item">
+              <Link to={"/tutorials"} className="nav-link">
+                Services
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to={"/addTutorial"} className="nav-link">
+                Add Tutorial
+              </Link>
+            </li>
+            {/* <li className="nav-item">
+              <Link to={"/addCustomer"} className="nav-link">
+                Add Customer
+              </Link>
+            </li> */}
           </div>
         </nav>
 
         <div className="container mt-3">
           <Switch>
             <Route exact path={["/", "/tutorials"]} component={TutorialsList} />
-            <Route exact path="/add" component={AddTutorial} />
+            <Route exact path="/addTutorial" component={AddTutorial} />
             <Route path="/tutorials/:id" component={Tutorial} />
+            <Route exact path={["/", "/customers"]} component={CustomersList} />
+            <Route exact path="/addCustomer" component={AddCustomer} />
+            <Route path="/customers/:id" component={Customer} />
+            <Route exact path={["/", "/locations"]} component={LocationsList} />
+            <Route exact path="/addLocation" component={AddLocation} />
+            <Route path="/locations/:id" component={Location} />
           </Switch>
         </div>
       </div>
