@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import CustomerDataService from "../services/customer.service";
 import { Link } from "react-router-dom";
+import Pagination from "@material-ui/lab/Pagination";
 
 export default class CustomersList extends Component {
   constructor(props) {
@@ -11,13 +12,21 @@ export default class CustomersList extends Component {
     this.setActiveCustomer = this.setActiveCustomer.bind(this);
     this.removeAllCustomers = this.removeAllCustomers.bind(this);
     this.searchTitle = this.searchTitle.bind(this);
+    this.handlePageChange = this.handlePageChange.bind(this);
+    this.handlePageSizeChange = this.handlePageSizeChange.bind(this);
 
     this.state = {
       customers: [],
       currentCustomer: null,
       currentIndex: -1,
-      searchTitle: ""
+      searchTitle: "",
+
+      page: 1,
+      count: 0,
+      pageSize: 3,
     };
+
+    this.pageSizes = [3, 6, 9];
   }
 
   componentDidMount() {
@@ -32,17 +41,67 @@ export default class CustomersList extends Component {
     });
   }
 
+  getRequestParams(searchTitle, page, pageSize) {
+    let params = {};
+
+    if (searchTitle) {
+      params["title"] = searchTitle;
+    }
+
+    if (page) {
+      params["page"] = page - 1;
+    }
+
+    if (pageSize) {
+      params["size"] = pageSize;
+    }
+
+    return params;
+  }
+
   retrieveCustomers() {
-    CustomerDataService.getAll()
+
+    const { searchTitle, page, pageSize } = this.state;
+    const params = this.getRequestParams(searchTitle, page, pageSize);
+
+    CustomerDataService.getAll(params)
       .then(response => {
+
+        const { customers, totalPages } = response.data;
+
         this.setState({
-            customers: response.data
+            // customers: response.data
+            customers: customers,
+            count: totalPages
         });
         console.log(response.data);
       })
       .catch(e => {
         console.log(e);
       });
+  }
+
+  handlePageChange(event, value) {
+    this.setState(
+      {
+        page: value,
+      },
+      () => {
+        this.retrieveCustomers();
+      }
+    );
+  }
+
+  handlePageSizeChange(event) {
+    this.setState(
+      {
+        pageSize: event.target.value,
+        page: 1
+      },
+      () => {
+        this.retrieveCustomers();
+      }
+    );
   }
 
   refreshList() {
@@ -87,7 +146,7 @@ export default class CustomersList extends Component {
   render() {
     // ...
 
-    const { searchTitle, customers, currentCustomer, currentIndex } = this.state;
+    const { searchTitle, customers, currentCustomer, currentIndex, page, count, pageSize } = this.state;
 
     return (
         <div className="list row">
@@ -104,7 +163,8 @@ export default class CustomersList extends Component {
               <button
                 className="btn btn-outline-secondary"
                 type="button"
-                onClick={this.searchTitle}
+                // onClick={this.searchTitle}
+                onClick={this.retrieveCustomers}
               >
                 Search
               </button>
@@ -113,6 +173,28 @@ export default class CustomersList extends Component {
         </div>
         <div className="col-md-6">
           <h4>Customers List</h4>
+
+          <div className="mt-3">
+            {"Items per Page: "}
+            <select onChange={this.handlePageSizeChange} value={pageSize}>
+              {this.pageSizes.map((size) => (
+                <option key={size} value={size}>
+                  {size}
+                </option>
+              ))}
+            </select>
+
+            <Pagination
+              className="my-3"
+              count={count}
+              page={page}
+              siblingCount={1}
+              boundaryCount={1}
+              variant="outlined"
+              shape="rounded"
+              onChange={this.handlePageChange}
+            />
+          </div>
 
           <ul className="list-group">
             {customers &&
