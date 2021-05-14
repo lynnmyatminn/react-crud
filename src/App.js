@@ -58,18 +58,21 @@ class App extends Component {
 
         <div className="container mt-3">
           <Switch>
-            <Route exact path={["/", "/tutorials"]} component={TutorialsList} />
-            <Route exact path="/addTutorial" component={AddTutorial} />
-            <Route path="/tutorials/:id" component={Tutorial} />
             <Route exact path={["/", "/customers"]} component={CustomersList} />
             <Route exact path="/addCustomer" component={AddCustomer} />
             <Route path="/customers/:id" component={Customer} />
+
             <Route exact path={["/", "/locations"]} component={LocationsList} />
             <Route exact path="/addLocation" component={AddLocation} />
             <Route path="/locations/:id" component={Location} />
+
             <Route exact path={["/", "/services"]} component={PricesPerBoxesList} />
             <Route exact path="/addService" component={AddPricesPerBox} />
             <Route path="/services/:id" component={PricesPerBox} />
+            
+            <Route exact path={["/", "/tutorials"]} component={TutorialsList} />
+            <Route exact path="/addTutorial" component={AddTutorial} />
+            <Route path="/tutorials/:id" component={Tutorial} />
           </Switch>
         </div>
       </div>
