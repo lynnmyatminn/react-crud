@@ -187,6 +187,13 @@ export default class PricesPerBoxesList extends Component {
               >
                 Edit
               </Link>
+              
+              <Link
+                to={"/pricesperboxes/" + currentPricesPerBox.id}
+                className="badge badge-warning"
+              >
+                Edit
+              </Link>
             </div>
           ) : (
             <div>
