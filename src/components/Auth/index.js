@@ -9,9 +9,7 @@ class LoginPage extends React.Component {
   constructor(props) {
     super(props);
 
-    if (localStorage.getItem("token")) {
-      history.push("/");
-    }
+    this.props.logout();
 
     history.listen((location, action) => {
       // clear alert on location change
@@ -140,6 +138,7 @@ function mapState(state) {
 }
 const actionCreators = {
   login: userActions.login,
+  logout: userActions.logout,
   clearAlerts: alertActions.clear,
 };
 
