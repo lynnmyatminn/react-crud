@@ -27,6 +27,17 @@ function login(email, password) {
   };
 }
 
+function logout() {
+  return (dispatch) => {
+    window.localStorage.removeItem("token");
+    dispatch({
+      type: userConstants.LOGOUT,
+    });
+    history.push("/login");
+  };
+}
+
 export const userActions = {
   login,
+  logout,
 };
