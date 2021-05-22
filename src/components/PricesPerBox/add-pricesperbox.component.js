@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import LocationDataService from "../services/location.service";
+import PricesPerBoxDataService from "../../services/pricesperbox.service";
 
-export default class AddLocation extends Component {
+export default class AddPricesPerBox extends Component {
   constructor(props) {
     super(props);
     this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
-    this.saveLocation = this.saveLocation.bind(this);
-    this.newLocation = this.newLocation.bind(this);
+    this.savePricesPerBox = this.savePricesPerBox.bind(this);
+    this.newPricesPerBox = this.newPricesPerBox.bind(this);
 
     this.state = {
       id: null,
@@ -31,13 +31,13 @@ export default class AddLocation extends Component {
     });
   }
 
-  saveLocation() {
+  savePricesPerBox() {
     var data = {
       name: this.state.name,
       description: this.state.description
     };
 
-    LocationDataService.create(data)
+    PricesPerBoxDataService.create(data)
       .then(response => {
         this.setState({
           id: response.data.id,
@@ -54,7 +54,7 @@ export default class AddLocation extends Component {
       });
   }
 
-  newLocation() {
+  newPricesPerBox() {
     this.setState({
       id: null,
       name: "",
@@ -71,7 +71,7 @@ export default class AddLocation extends Component {
         {this.state.submitted ? (
           <div>
             <h4>You submitted successfully!</h4>
-            <button className="btn btn-success" onClick={this.newLocation}>
+            <button className="btn btn-success" onClick={this.newPricesPerBox}>
               Add
             </button>
           </div>
@@ -103,7 +103,7 @@ export default class AddLocation extends Component {
               />
             </div>
 
-            <button onClick={this.saveLocation} className="btn btn-success">
+            <button onClick={this.savePricesPerBox} className="btn btn-success">
               Submit
             </button>
           </div>

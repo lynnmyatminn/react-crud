@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CustomerDataService from "../services/customer.service";
+import CustomerDataService from "../../services/customer.service";
 
 export default class AddCustomer extends Component {
   constructor(props) {
