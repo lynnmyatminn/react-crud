@@ -4,7 +4,7 @@ import NavBar from "./navbar";
 import { connect } from "react-redux";
 import Content from "./content";
 
-class Home extends React.Component {
+class Layout extends React.Component {
   render() {
     const { menu } = this.props;
     return (
@@ -34,6 +34,6 @@ function mapState(state) {
   };
 }
 
-const connectedHome = connect(mapState)(Home);
+const connectedLayout = connect(mapState)(Layout);
 
-export default connectedHome;
+export default connectedLayout;

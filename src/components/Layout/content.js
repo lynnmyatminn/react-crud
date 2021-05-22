@@ -1,6 +1,7 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import routes from "../../routes";
+import NotFound from "../Error";
 class Content extends React.Component {
   render() {
     return (
@@ -11,7 +12,6 @@ class Content extends React.Component {
               <Route
                 key={idx}
                 path={route.path}
-                exact={route.exact}
                 name={route.name}
                 render={(props) => <route.component {...props} />}
               />
@@ -24,4 +24,4 @@ class Content extends React.Component {
   }
 }
 
-export default Content;
+export default React.memo(Content);
