@@ -1,7 +1,6 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import routes from "../../routes";
-import NotFound from "../Error";
 class Content extends React.Component {
   render() {
     return (
