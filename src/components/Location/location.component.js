@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import LocationDataService from "../services/location.service";
+import LocationDataService from "../../services/location.service";
 
 export default class Location extends Component {
   constructor(props) {
@@ -16,9 +16,9 @@ export default class Location extends Component {
         id: null,
         name: "",
         description: "",
-        published: false
+        published: false,
       },
-      message: ""
+      message: "",
     };
   }
 
@@ -29,36 +29,36 @@ export default class Location extends Component {
   onChangeTitle(e) {
     const name = e.target.value;
 
-    this.setState(function(prevState) {
+    this.setState(function (prevState) {
       return {
         currentLocation: {
           ...prevState.currentLocation,
-          name: name
-        }
+          name: name,
+        },
       };
     });
   }
 
   onChangeDescription(e) {
     const description = e.target.value;
-    
-    this.setState(prevState => ({
+
+    this.setState((prevState) => ({
       currentLocation: {
         ...prevState.currentLocation,
-        description: description
-      }
+        description: description,
+      },
     }));
   }
 
   getLocation(id) {
     LocationDataService.get(id)
-      .then(response => {
+      .then((response) => {
         this.setState({
-          currentLocation: response.data
+          currentLocation: response.data,
         });
         console.log(response.data);
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
       });
   }
@@ -68,20 +68,20 @@ export default class Location extends Component {
       id: this.state.currentLocation.id,
       name: this.state.currentLocation.name,
       description: this.state.currentLocation.description,
-      published: status
+      published: status,
     };
 
     LocationDataService.update(this.state.currentLocation.id, data)
-      .then(response => {
-        this.setState(prevState => ({
-            currentLocation: {
+      .then((response) => {
+        this.setState((prevState) => ({
+          currentLocation: {
             ...prevState.currentLocation,
-            published: status
-          }
+            published: status,
+          },
         }));
         console.log(response.data);
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
       });
   }
@@ -91,24 +91,24 @@ export default class Location extends Component {
       this.state.currentLocation.id,
       this.state.currentLocation
     )
-      .then(response => {
+      .then((response) => {
         console.log(response.data);
         this.setState({
-          message: "The tutorial was updated successfully!"
+          message: "The tutorial was updated successfully!",
         });
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
       });
   }
 
-  deleteLocation() {    
+  deleteLocation() {
     LocationDataService.delete(this.state.currentLocation.id)
-      .then(response => {
+      .then((response) => {
         console.log(response.data);
-        this.props.history.push('/locations')
+        this.props.history.push("/locations");
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
       });
   }

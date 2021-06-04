@@ -13,8 +13,8 @@ class App extends Component {
     return (
       <Router history={history}>
         <Switch>
+          <Route exact path="/login" name="Login" component={LoginPage} />
           <PrivateRoute path="/" component={LayoutPage} />
-          <Route path="/login" component={LoginPage} />
         </Switch>
       </Router>
     );

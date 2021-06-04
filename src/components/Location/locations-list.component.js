@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import LocationDataService from "../services/location.service";
+import LocationDataService from "../../services/location.service";
 import { Link } from "react-router-dom";
 
 export default class LocationsList extends Component {
@@ -16,7 +16,7 @@ export default class LocationsList extends Component {
       locations: [],
       currentLocation: null,
       currentIndex: -1,
-      searchTitle: ""
+      searchTitle: "",
     };
   }
 
@@ -28,19 +28,19 @@ export default class LocationsList extends Component {
     const searchTitle = e.target.value;
 
     this.setState({
-      searchTitle: searchTitle
+      searchTitle: searchTitle,
     });
   }
 
   retrieveLocations() {
     LocationDataService.getAll()
-      .then(response => {
+      .then((response) => {
         this.setState({
-          locations: response.data
+          locations: response.data,
         });
         console.log(response.data);
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
       });
   }
@@ -49,24 +49,24 @@ export default class LocationsList extends Component {
     this.retrieveLocations();
     this.setState({
       currentLocation: null,
-      currentIndex: -1
+      currentIndex: -1,
     });
   }
 
   setActiveLocation(location, index) {
     this.setState({
-        currentLocation: location,
-      currentIndex: index
+      currentLocation: location,
+      currentIndex: index,
     });
   }
 
   removeAllLocations() {
     LocationDataService.deleteAll()
-      .then(response => {
+      .then((response) => {
         console.log(response.data);
         this.refreshList();
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
       });
   }
@@ -74,23 +74,24 @@ export default class LocationsList extends Component {
   searchTitle() {
     this.setState({
       currentLocation: null,
-      currentIndex: -1
+      currentIndex: -1,
     });
 
     LocationDataService.findByTitle(this.state.searchTitle)
-      .then(response => {
+      .then((response) => {
         this.setState({
-          locations: response.data
+          locations: response.data,
         });
         console.log(response.data);
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
       });
   }
 
   render() {
-    const { searchTitle, locations, currentLocation, currentIndex } = this.state;
+    const { searchTitle, locations, currentLocation, currentIndex } =
+      this.state;
 
     return (
       <div className="list row">

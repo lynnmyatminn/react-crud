@@ -11,6 +11,7 @@ class Content extends React.Component {
               <Route
                 key={idx}
                 path={route.path}
+                exact={route.exact}
                 name={route.name}
                 render={(props) => <route.component {...props} />}
               />

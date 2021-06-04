@@ -1,4 +1,4 @@
-import { toggleConstants } from "../constants";
+import * as TYPES from "./types";
 
 export const toggleActions = {
   toggleMenu,
@@ -6,6 +6,6 @@ export const toggleActions = {
 
 function toggleMenu() {
   return (dispatch) => {
-    dispatch({ type: toggleConstants.TOGGLE_MENU });
+    dispatch({ type: TYPES.TOGGLE_MENU });
   };
 }
